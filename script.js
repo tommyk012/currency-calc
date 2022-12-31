@@ -14,24 +14,24 @@ form.addEventListener("submit", (event) => {
     let USD = 4.4415;
     let GBP = 5.4558;
     let amountZloty = 0;
+    let rate;
 
-    switch(currency[currency.selectedIndex].id){
-        case "euro":    
-            amountZloty = amount.value * EUR;
-            labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + EUR;
-            break;
-        case "dollar":  
-            amountZloty = amount.value * USD;
-            labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + USD;
-            break;
-        case "pound":  
-            amountZloty = amount.value * GBP;
-            labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + GBP;
-            break;
-        default: 
-            break;
-    }
+    switch (currency.value) {
+        case "euro":
+          rate = EUR;
+          break;
+        case "dollar":
+          rate = USD;
+          break;
+        case "pound":
+          rate = GBP;
+          break;
+        default:
+          break;
+      }
 
-    amountZloty = amountZloty.toFixed(2);
-    result.innerHTML = "Kwota w złotówkach: " + amountZloty;
-})
+    labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + rate;
+
+    amountZloty = amount.value * rate;
+    result.innerHTML = "Kwota w złotówkach: " + amountZloty.toFixed(2);
+});
