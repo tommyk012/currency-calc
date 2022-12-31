@@ -1,37 +1,49 @@
-let amount = document.querySelector(".js-amount");
-let currency = document.querySelector(".js-currency");
-let result = document.querySelector(".js-result");
-let form = document.querySelector(".form");
-let labelCurrency = document.querySelector(".js-labelCurrency")
+{
+  const showCurrentRate = (rate) =>{
+      const labelCurrency = document.querySelector(".js-labelCurrency");
+      labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + rate;
+  }
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if(amount.value === ""){
-        return;
-    }   
+  const showResult = (rate,amount) => {
+      const result = document.querySelector(".js-result");
+      amountZloty = amount.value * rate;
+      result.innerHTML = "Kwota w złotówkach: " + amountZloty.toFixed(2);
+  }
 
-    let EUR = 4.6898;
-    let USD = 4.4415;
-    let GBP = 5.4558;
-    let amountZloty = 0;
-    let rate;
+  const setCurrencyRate = () =>{
+      const currency = document.querySelector(".js-currency");
+      const EUR = 4.6898;
+      const USD = 4.4415;
+      const GBP = 5.4558;
+      let rate;
 
-    switch (currency.value) {
-        case "euro":
-          rate = EUR;
-          break;
-        case "dollar":
-          rate = USD;
-          break;
-        case "pound":
-          rate = GBP;
-          break;
-        default:
-          break;
-      }
+      switch (currency.value) {
+          case "euro":
+            rate = EUR;
+            break;
+          case "dollar":
+            rate = USD;
+            break;
+          case "pound":
+            rate = GBP;
+            break;
+          default:
+            break;
+        }
+        return rate;
+  }
 
-    labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + rate;
+  const calculate = (event) =>{
+      const amount = document.querySelector(".js-amount");
+      event.preventDefault();
+      if(amount.value === ""){
+          return;
+      }   
 
-    amountZloty = amount.value * rate;
-    result.innerHTML = "Kwota w złotówkach: " + amountZloty.toFixed(2);
-});
+      showCurrentRate(setCurrencyRate());
+      showResult(setCurrencyRate(),amount);
+  }
+
+  const form = document.querySelector(".form");
+  form.addEventListener("submit", calculate);
+}
