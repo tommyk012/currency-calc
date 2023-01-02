@@ -1,16 +1,17 @@
 {
   const showCurrentRate = (rate) =>{
       const labelCurrency = document.querySelector(".js-labelCurrency");
-      labelCurrency.innerHTML = "Kurs z dnia 04.12.2022 r.: <br>" + rate;
+      labelCurrency.innerHTML = `Kurs z dnia 04.12.2022 r.: <br>${rate}`;
   }
 
-  const showResult = (rate,amount) => {
+  const updateResultText = (rate,amount) => {
       const result = document.querySelector(".js-result");
+
       amountZloty = amount.value * rate;
       result.innerHTML = "Kwota w złotówkach: " + amountZloty.toFixed(2);
   }
 
-  const setCurrencyRate = () =>{
+  const getCurrencyRate = () =>{
       const currency = document.querySelector(".js-currency");
       const EUR = 4.6898;
       const USD = 4.4415;
@@ -19,18 +20,14 @@
 
       switch (currency.value) {
           case "euro":
-            rate = EUR;
-            break;
+            return EUR;
           case "dollar":
-            rate = USD;
-            break;
+            return USD;
           case "pound":
-            rate = GBP;
-            break;
+            return GBP;
           default:
             break;
         }
-        return rate;
   }
 
   const calculate = (event) =>{
@@ -40,10 +37,16 @@
           return;
       }   
 
-      showCurrentRate(setCurrencyRate());
-      showResult(setCurrencyRate(),amount);
+      const currenyRate = getCurrencyRate()
+
+      showCurrentRate(currenyRate);
+      updateResultText(currenyRate,amount);
   }
 
-  const form = document.querySelector(".form");
-  form.addEventListener("submit", calculate);
+  const init = () => {
+    const form = document.querySelector(".form");
+    form.addEventListener("submit", calculate);
+  }
+
+  init();
 }

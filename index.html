@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator walut</title>
-    <link rel="icon" href="icon.jpg">
-    <meta property="og:image" content="share.png">
+    <link rel="icon" href="pictures/icon.jpg" />
+    <meta property="og:image" content="pictures/share.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,11 +17,11 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <link href="container.css" rel="stylesheet" />
-    <link href="form.css" rel="stylesheet" />
-    <script defer src="script.js"></script>
+    <link href="css/container.css" rel="stylesheet" />
+    <link href="css/form.css" rel="stylesheet" />
+    <script defer src="js/script.js"></script>
   </head>
-  <body>
+  <body class="body">
     <div class="container">
       <form class="form">
         <fieldset>
@@ -29,7 +29,14 @@
           <p>
             <label>
               <span class="form__labelText"> Wartość:</span>
-              <input type="number" name="money" class="form__field js-amount" min="0" required autofocus />
+              <input
+                type="number"
+                name="money"
+                class="form__field js-amount"
+                min="0"
+                required
+                autofocus
+              />
             </label>
           </p>
           <p>
@@ -39,7 +46,8 @@
                 <option value="euro">EUR</option>
                 <option value="dollar">USD</option>
                 <option value="pound">GBP</option>
-              </select> <p class="form__labelCurrency js-labelCurrency"></p>
+              </select>
+              <p class="form__labelCurrency js-labelCurrency"></p>
             </label>
           </p>
           <p>
